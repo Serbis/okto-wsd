@@ -1,0 +1,205 @@
+
+
+Sat Jan 26 15:59:35 2019
+Command line: TestDisk
+
+TestDisk 7.0, Data Recovery Utility, April 2015
+Christophe GRENIER <grenier@cgsecurity.org>
+http://www.cgsecurity.org
+OS: Linux, kernel 4.14.71-v7+ (#1145 SMP Fri Sep 21 15:38:35 BST 2018) armv7l
+Compiler: GCC 6.2
+ext2fs lib: 1.43.4, ntfs lib: libntfs-3g, reiserfs lib: none, ewf lib: none, curses lib: ncurses 6.0
+Warning: can't get size for Disk /dev/mapper/control - 0 B - 0 sectors, sector size=512
+Hard disk list
+Disk /dev/mmcblk0 - 7990 MB / 7620 MiB - CHS 243840 4 16, sector size=512
+
+Partition table type (auto): Intel
+Disk /dev/mmcblk0 - 7990 MB / 7620 MiB
+Partition table type: Intel
+
+Interface Advanced
+Geometry from i386 MBR: head=106 sector=51
+BAD_RS LBA=8192 2082
+FAT32 at 128/0/1
+Info: size boot_sector 89698, partition 89698
+FAT1 : 32-721
+FAT2 : 722-1411
+start_rootdir : 1412 root cluster : 2
+Data : 1412-89697
+sectors : 89698
+cluster_size : 1
+no_of_cluster : 88286 (2 - 88287)
+fat_length 690 calculated 690
+heads/cylinder 64 (FAT) != 4 (HD)
+sect/track 32 (FAT) != 16 (HD)
+BAD_RS LBA=98304 888
+get_geometry_from_list_part_aux head=4 nbr=3
+get_geometry_from_list_part_aux head=8 nbr=3
+get_geometry_from_list_part_aux head=16 nbr=3
+get_geometry_from_list_part_aux head=32 nbr=3
+get_geometry_from_list_part_aux head=64 nbr=3
+get_geometry_from_list_part_aux head=128 nbr=3
+ 1 P FAT32 LBA              128   0  1  1529   2  2      89698 [boot]
+     FAT32, blocksize=512, 45 MB / 43 MiB
+ 2 P Linux                 1536   0  1 243839   3 16   15507456 [rootfs]
+     ext4 blocksize=4096 Large_file Sparse_SB Recover, 7939 MB / 7572 MiB
+
+
+dir_partition inode=2
+ 2 P Linux                 1536   0  1 243839   3 16   15507456 [rootfs]
+     ext4 blocksize=4096 Large_file Sparse_SB Recover, 7939 MB / 7572 MiB
+Directory /
+       2 drwxr-xr-x     0      0      4096  9-Oct-2018 15:33 .
+       2 drwxr-xr-x     0      0      4096  9-Oct-2018 15:33 ..
+      11 drwx------     0      0     16384  9-Oct-2018 15:31 lost+found
+      12 drwxr-xr-x     0      0      4096  9-Oct-2018 15:31 boot
+    7921 drwxr-xr-x     0      0      4096 26-Jan-2019 15:54 bin
+    7922 drwxr-xr-x     0      0      4096  9-Oct-2018 14:47 debootstrap
+   15841 drwxr-xr-x     0      0      4096  9-Oct-2018 14:39 dev
+   15842 drwxr-xr-x     0      0      4096 26-Jan-2019 15:54 etc
+   23761 drwxr-xr-x     0      0      4096  9-Oct-2018 14:50 home
+   23762 drwxr-xr-x     0      0      4096  9-Oct-2018 15:03 lib
+   31681 drwxr-xr-x     0      0      4096  9-Oct-2018 14:37 media
+   31682 drwxr-xr-x     0      0      4096  9-Oct-2018 14:37 mnt
+   39601 drwxr-xr-x     0      0      4096  9-Oct-2018 14:51 opt
+   39602 drwxr-xr-x     0      0      4096 12-Mar-2018 17:03 proc
+   47521 drwx------     0      0      4096 25-Jan-2019 12:56 root
+   47522 drwxr-xr-x     0      0      4096  9-Oct-2018 14:52 run
+   55441 drwxr-xr-x     0      0      4096 26-Jan-2019 15:54 sbin
+   55442 drwxr-xr-x     0      0      4096  9-Oct-2018 14:37 srv
+   63361 drwxr-xr-x     0      0      4096 12-Mar-2018 17:03 sys
+   63362 drwxrwxrwt     0      0      4096 26-Jan-2019 15:54 tmp
+   71281 drwxr-xr-x     0      0      4096  9-Oct-2018 14:37 usr
+   71282 drwxr-xr-x     0      0      4096  9-Oct-2018 15:33 var
+X  19353 -rw-r--r--     0      0       314  9-Oct-2018 15:34 .ismount-test-file
+
+dir_partition inode=23761
+ 2 P Linux                 1536   0  1 243839   3 16   15507456 [rootfs]
+     ext4 blocksize=4096 Large_file Sparse_SB Recover, 7939 MB / 7572 MiB
+Directory /home
+   23761 drwxr-xr-x     0      0      4096  9-Oct-2018 14:50 .
+       2 drwxr-xr-x     0      0      4096  9-Oct-2018 15:33 ..
+    1237 drwxr-xr-x  1000   1000      4096 26-Jan-2019 15:39 pi
+
+dir_partition inode=1237
+ 2 P Linux                 1536   0  1 243839   3 16   15507456 [rootfs]
+     ext4 blocksize=4096 Large_file Sparse_SB Recover, 7939 MB / 7572 MiB
+Directory /home/pi
+    1237 drwxr-xr-x  1000   1000      4096 26-Jan-2019 15:39 .
+   23761 drwxr-xr-x     0      0      4096  9-Oct-2018 14:50 ..
+    1495 -rw-------  1000   1000     27143 23-Jan-2019 23:04 .bash_history
+    1809 -rw-r--r--  1000   1000       220  9-Oct-2018 14:50 .bash_logout
+    1810 -rw-r--r--  1000   1000      3523  9-Oct-2018 14:50 .bashrc
+    1811 -rw-r--r--  1000   1000       675  9-Oct-2018 14:50 .profile
+   40308 -rw-------  1000   1000     24037 26-Jan-2019 15:39 .viminfo
+  129244 drwx------  1000   1000      4096 18-Dec-2018 22:01 .config
+   21314 -rw-r--r--  1000   1000       266 23-Dec-2018 19:47 .wget-hsts
+  129305 drwxr-xr-x  1000   1000      4096  9-Jan-2019 13:59 spi
+  129279 drwxr-xr-x  1000   1000      4096  9-Jan-2019 13:22 blink
+  129331 drwxr-xr-x  1000   1000      4096 26-Jan-2019 15:35 nrf24
+   20439 -rw-r--r--  1000   1000     10240  9-Jan-2019 14:25 nrf.tar
+   40183 -rw-r--r--  1000   1000     61440 12-Jan-2019 10:16 nrf24.tar
+  130005 drwxr-xr-x  1000   1000      4096  9-Jan-2019 15:32 .nano
+  130070 drwxr-xr-x  1000   1000      4096 12-Jan-2019 10:02 .ssh
+  130083 drwxr-xr-x  1000   1000      4096 12-Jan-2019 10:06 wsd
+  130343 drwxr-xr-x  1000   1000      4096 19-Jan-2019 18:14 .oracle_jre_usage
+X  40308 -rw-------  1000   1000     24037 26-Jan-2019 15:39 .viminfo.tmp
+
+dir_partition inode=130083
+ 2 P Linux                 1536   0  1 243839   3 16   15507456 [rootfs]
+     ext4 blocksize=4096 Large_file Sparse_SB Recover, 7939 MB / 7572 MiB
+Directory /home/pi/wsd
+  130083 drwxr-xr-x  1000   1000      4096 12-Jan-2019 10:06 .
+    1237 drwxr-xr-x  1000   1000      4096 26-Jan-2019 15:39 ..
+  130085 drwxr-xr-x  1000   1000      4096 25-Jan-2019 14:37 core
+  130156 drwxr-xr-x  1000   1000      4096 21-Jan-2019 16:59 dev
+
+dir_partition inode=130085
+ 2 P Linux                 1536   0  1 243839   3 16   15507456 [rootfs]
+     ext4 blocksize=4096 Large_file Sparse_SB Recover, 7939 MB / 7572 MiB
+Directory /home/pi/wsd/core
+  130085 drwxr-xr-x  1000   1000      4096 25-Jan-2019 14:37 .
+  130083 drwxr-xr-x  1000   1000      4096 12-Jan-2019 10:06 ..
+  130086 drwxr-xr-x  1000   1000      4096 11-Jan-2019 13:57 build
+  130087 drwxr-xr-x  1000   1000      4096 25-Jan-2019 14:37 include
+  130088 drwxr-xr-x  1000   1000      4096 11-Jan-2019 16:03 libs
+  130186 -rw-r--r--  1000   1000       707 12-Jan-2019 16:32 data_processor.c
+  130097 -rw-r--r--  1000   1000       887 11-Jan-2019 12:17 .cproject
+  130098 -rw-r--r--  1000   1000       510 11-Jan-2019 12:17 .project
+  130176 -rw-r--r--  1000   1000      1132 26-Jan-2019 15:30 Makefile
+  130228 -rw-r--r--  1000   1000      9491 26-Jan-2019 15:45 core.c
+  130080 -rw-r--r--  1000   1000      2988 12-Jan-2019 18:34 socket_handler.c
+  130210 -rw-r--r--  1000   1000      3024 25-Jan-2019 12:38 logger.c
+  130103 -rw-r--r--  1000   1000        83 11-Jan-2019 15:00 packet.c
+X 130176 -rw-r--r--  1000   1000      1132 26-Jan-2019 15:30 4913
+  130107 -rw-r--r--  1000   1000      1554 20-Jan-2019 13:04 exb_packet.c
+  130172 -rw-r--r--  1000   1000      1074 25-Jan-2019 14:41 utils.c
+  130079 -rw-r--r--  1000   1000     10124 26-Jan-2019 15:49 NRF24.c
+  130169 -rw-r--r--  1000   1000      1990 12-Jan-2019 10:27 gpio.c
+  130104 -rw-r--r--  1000   1000      1390 12-Jan-2019 10:23 spi.c
+  130181 -rw-r--r--  1000   1000       924 25-Jan-2019 14:42 time.c
+  130227 drwxrwxr-x  1000   1000      4096 25-Jan-2019 14:33 docs
+X 130230 -rw-r--r--  1000   1000       237 26-Jan-2019 15:39 Makefile~
+  130166 -rw-r--r--  1000   1000      1653 26-Jan-2019 15:29 rf_receiver.c
+  130123 -rw-r--r--  1000   1000      4759 25-Jan-2019 09:57 rf_transmitter.c
+  130171 -rw-r--r--  1000   1000      9473 26-Jan-2019 15:28 gate_in.c
+  130221 -rw-r--r--  1000   1000      3338 24-Jan-2019 16:36 so_receiver.c
+  130193 -rw-r--r--  1000   1000      1412 24-Jan-2019 13:00 so_transmitter.c
+  130231 -rw-r--r--  1000   1000      1642 25-Jan-2019 14:38 wsd_packet.c
+  130226 -rw-r--r--  1000   1000      3171 24-Jan-2019 12:59 gate_out.c
+X 130079 -rw-r--r--  1000   1000     10124 26-Jan-2019 15:49 .NRF24.c.Q3LTt5
+Directory /home/pi/wsd
+  130083 drwxr-xr-x  1000   1000      4096 12-Jan-2019 10:06 .
+    1237 drwxr-xr-x  1000   1000      4096 26-Jan-2019 15:39 ..
+  130085 drwxr-xr-x  1000   1000      4096 25-Jan-2019 14:37 core
+  130156 drwxr-xr-x  1000   1000      4096 21-Jan-2019 16:59 dev
+Directory /home/pi
+    1237 drwxr-xr-x  1000   1000      4096 26-Jan-2019 15:39 .
+   23761 drwxr-xr-x     0      0      4096  9-Oct-2018 14:50 ..
+    1495 -rw-------  1000   1000     27143 23-Jan-2019 23:04 .bash_history
+    1809 -rw-r--r--  1000   1000       220  9-Oct-2018 14:50 .bash_logout
+    1810 -rw-r--r--  1000   1000      3523  9-Oct-2018 14:50 .bashrc
+    1811 -rw-r--r--  1000   1000       675  9-Oct-2018 14:50 .profile
+   40308 -rw-------  1000   1000     24037 26-Jan-2019 15:39 .viminfo
+  129244 drwx------  1000   1000      4096 18-Dec-2018 22:01 .config
+   21314 -rw-r--r--  1000   1000       266 23-Dec-2018 19:47 .wget-hsts
+  129305 drwxr-xr-x  1000   1000      4096  9-Jan-2019 13:59 spi
+  129279 drwxr-xr-x  1000   1000      4096  9-Jan-2019 13:22 blink
+  129331 drwxr-xr-x  1000   1000      4096 26-Jan-2019 15:35 nrf24
+   20439 -rw-r--r--  1000   1000     10240  9-Jan-2019 14:25 nrf.tar
+   40183 -rw-r--r--  1000   1000     61440 12-Jan-2019 10:16 nrf24.tar
+  130005 drwxr-xr-x  1000   1000      4096  9-Jan-2019 15:32 .nano
+  130070 drwxr-xr-x  1000   1000      4096 12-Jan-2019 10:02 .ssh
+  130083 drwxr-xr-x  1000   1000      4096 12-Jan-2019 10:06 wsd
+  130343 drwxr-xr-x  1000   1000      4096 19-Jan-2019 18:14 .oracle_jre_usage
+X  40308 -rw-------  1000   1000     24037 26-Jan-2019 15:39 .viminfo.tmp
+Directory /home
+   23761 drwxr-xr-x     0      0      4096  9-Oct-2018 14:50 .
+       2 drwxr-xr-x     0      0      4096  9-Oct-2018 15:33 ..
+    1237 drwxr-xr-x  1000   1000      4096 26-Jan-2019 15:39 pi
+Directory /
+       2 drwxr-xr-x     0      0      4096  9-Oct-2018 15:33 .
+       2 drwxr-xr-x     0      0      4096  9-Oct-2018 15:33 ..
+      11 drwx------     0      0     16384  9-Oct-2018 15:31 lost+found
+      12 drwxr-xr-x     0      0      4096  9-Oct-2018 15:31 boot
+    7921 drwxr-xr-x     0      0      4096 26-Jan-2019 15:54 bin
+    7922 drwxr-xr-x     0      0      4096  9-Oct-2018 14:47 debootstrap
+   15841 drwxr-xr-x     0      0      4096  9-Oct-2018 14:39 dev
+   15842 drwxr-xr-x     0      0      4096 26-Jan-2019 15:54 etc
+   23761 drwxr-xr-x     0      0      4096  9-Oct-2018 14:50 home
+   23762 drwxr-xr-x     0      0      4096  9-Oct-2018 15:03 lib
+   31681 drwxr-xr-x     0      0      4096  9-Oct-2018 14:37 media
+   31682 drwxr-xr-x     0      0      4096  9-Oct-2018 14:37 mnt
+   39601 drwxr-xr-x     0      0      4096  9-Oct-2018 14:51 opt
+   39602 drwxr-xr-x     0      0      4096 12-Mar-2018 17:03 proc
+   47521 drwx------     0      0      4096 25-Jan-2019 12:56 root
+   47522 drwxr-xr-x     0      0      4096  9-Oct-2018 14:52 run
+   55441 drwxr-xr-x     0      0      4096 26-Jan-2019 15:54 sbin
+   55442 drwxr-xr-x     0      0      4096  9-Oct-2018 14:37 srv
+   63361 drwxr-xr-x     0      0      4096 12-Mar-2018 17:03 sys
+   63362 drwxrwxrwt     0      0      4096 26-Jan-2019 15:54 tmp
+   71281 drwxr-xr-x     0      0      4096  9-Oct-2018 14:37 usr
+   71282 drwxr-xr-x     0      0      4096  9-Oct-2018 15:33 var
+X  19353 -rw-r--r--     0      0       314  9-Oct-2018 15:34 .ismount-test-file
+
+TestDisk exited normally.

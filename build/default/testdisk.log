@@ -1,0 +1,47 @@
+
+
+Sat Jan 26 15:54:56 2019
+Command line: TestDisk
+
+TestDisk 7.0, Data Recovery Utility, April 2015
+Christophe GRENIER <grenier@cgsecurity.org>
+http://www.cgsecurity.org
+OS: Linux, kernel 4.14.71-v7+ (#1145 SMP Fri Sep 21 15:38:35 BST 2018) armv7l
+Compiler: GCC 6.2
+ext2fs lib: 1.43.4, ntfs lib: libntfs-3g, reiserfs lib: none, ewf lib: none, curses lib: ncurses 6.0
+Warning: can't get size for Disk /dev/mapper/control - 0 B - 0 sectors, sector size=512
+Hard disk list
+Disk /dev/mmcblk0 - 7990 MB / 7620 MiB - CHS 243840 4 16, sector size=512
+
+Partition table type (auto): Intel
+Disk /dev/mmcblk0 - 7990 MB / 7620 MiB
+Partition table type: Intel
+
+Interface Advanced
+Geometry from i386 MBR: head=106 sector=51
+BAD_RS LBA=8192 2082
+FAT32 at 128/0/1
+Info: size boot_sector 89698, partition 89698
+FAT1 : 32-721
+FAT2 : 722-1411
+start_rootdir : 1412 root cluster : 2
+Data : 1412-89697
+sectors : 89698
+cluster_size : 1
+no_of_cluster : 88286 (2 - 88287)
+fat_length 690 calculated 690
+heads/cylinder 64 (FAT) != 4 (HD)
+sect/track 32 (FAT) != 16 (HD)
+BAD_RS LBA=98304 888
+get_geometry_from_list_part_aux head=4 nbr=3
+get_geometry_from_list_part_aux head=8 nbr=3
+get_geometry_from_list_part_aux head=16 nbr=3
+get_geometry_from_list_part_aux head=32 nbr=3
+get_geometry_from_list_part_aux head=64 nbr=3
+get_geometry_from_list_part_aux head=128 nbr=3
+ 1 P FAT32 LBA              128   0  1  1529   2  2      89698 [boot]
+     FAT32, blocksize=512, 45 MB / 43 MiB
+ 2 P Linux                 1536   0  1 243839   3 16   15507456 [rootfs]
+     ext4 blocksize=4096 Large_file Sparse_SB Recover, 7939 MB / 7572 MiB
+
+TestDisk exited normally.
