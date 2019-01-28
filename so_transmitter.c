@@ -27,17 +27,28 @@ void SoTransmitter_thread(SoTransmitterArgs * args) {
 			uint16_t sbin = 0;
 			uint8_t *bin = WsdPacket_toBinary(packet, &sbin);
 
-			#ifdef DEBUG
-			char *bhex = sprintfhex(packet->body, packet->length);
-			Logger_debug("SoTransmitter_thread", "Transmit to env wsd packet [ tid=%d, type=%d, length=%d, data=%s]", packet->tid, packet->type, packet->length, bhex);
-			free(bhex);
-			#endif
+
+			if (socket != NULL) {
+				#ifdef DEBUG
+				char *bhex = sprintfhex(packet->body, packet->length);
+				Logger_debug("SoTransmitter_thread", "Transmit to env wsd packet [ tid=%d, type=%d, length=%d, data=%s]", packet->tid, packet->type, packet->length, bhex);
+				free(bhex);
+				#endif
+
+				write(*socket, bin, sbin);
+				fsync(*socket);
+			} else  {
+				#ifdef DEBUG
+				char *bhex = sprintfhex(packet->body, packet->length);
+				Logger_debug("SoTransmitter_thread", "Unable to transmit to env wsd packet becuse tid is rotten [ tid=%d, type=%d, length=%d, data=%s]", packet->tid, packet->type, packet->length, bhex);
+				free(bhex);
+				#endif
+			}
 
 			//TODO если сокета уже нет в мепе, то будет возвращен 0, попытка записи туда приведет к краху
 
 
-			write(*socket, bin, sbin);
-			fsync(*socket);
+
 
 			free(elem->data);
 			free(elem);
