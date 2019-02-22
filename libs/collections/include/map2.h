@@ -5,7 +5,12 @@
 #ifndef MNVP_DRIVER_MAP2_H
 #define MNVP_DRIVER_MAP2_H
 
+#define PTHREADS_LOCK
+
 #include <stdint.h>
+#ifdef PTHREADS_LOCK
+#include <pthread.h>
+#endif
 #include "colnode.h"
 #include "list.h"
 
@@ -16,6 +21,9 @@ typedef struct MapItem {
 
 typedef struct Map {
     List *inner;
+	#ifdef PTHREADS_LOCK
+    pthread_mutex_t *mutex;
+	#endif
 } Map;
 
 typedef struct MapIterator {
@@ -32,6 +40,8 @@ Map* MAP_del(Map *map);
 Map* MAP_new();
 
 MapIterator* MAP_ITERATOR_new(Map *map);
+void MAP_ITERATOR_lock(MapIterator *iterator);
+void MAP_ITERATOR_unlock(MapIterator *iterator);
 bool MAP_ITERATOR_hasNext(MapIterator *iterator);
 void* MAP_ITERATOR_next(MapIterator *iterator);
 void MAP_ITERATOR_remove(MapIterator *iterator);

@@ -27,7 +27,9 @@ void GateOut_thread(GateOutThreadArgs *args) {
 
 	while(1) {
 		if (upQueue->size(upQueue) > 0) {
-			uint8_t *payload = (uint8_t*) upQueue->dequeue(upQueue);
+			GateOutQueueElement *elem = (GateOutQueueElement*) upQueue->dequeue(upQueue);
+			uint8_t *payload = elem->data;
+
 			for (uint8_t i = 0; i < 32; i++) {
 				uint8_t ch = payload[i];
 
@@ -61,10 +63,10 @@ void GateOut_thread(GateOutThreadArgs *args) {
 				    	uint8_t *blob = (uint8_t*) malloc(stotal);
 				        RINGS_readAll(blob + 4, inBuf);
 
-				        blob[0] = 0;
-				        blob[1] = 0;
-				        blob[2] = 0;
-				        blob[3] = 0;
+				        blob[0] = (elem->addr & 0xff000000) >> 24;
+				        blob[1] = (elem->addr & 0x00ff0000) >> 16;
+				        blob[2] = (elem->addr & 0x0000ff00) >> 8;
+				        blob[3] = (elem->addr & 0x000000ff);
 
 
 						#ifdef DEBUG
@@ -78,6 +80,8 @@ void GateOut_thread(GateOutThreadArgs *args) {
 				        sot->type = WSD_TYPE_RECEIVE;
 				        sot->size = stotal;
 				        sot->data = (uint8_t*) blob;
+				        if (packet->type == EXB_TYPE_EVENT || packet->type == EXB_TYPE_EVENTC) // If this is an event
+				        	sot->uniall = true; // It must be resend to all existed socket at out
 
 				        soTransmitterQueue->enqueue(soTransmitterQueue, sot);
 
@@ -90,6 +94,7 @@ void GateOut_thread(GateOutThreadArgs *args) {
 				 }
 			}
 			free(payload);
+			free(elem);
 		}
 		usleep(50000);
 	}

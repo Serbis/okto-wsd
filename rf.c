@@ -89,7 +89,7 @@ int RF_Receive(uint8_t *payload) {
 
 	//Logger_debug("RF_Receive", "Follow to receive mode");
 
-    return NRF24_Receive(payload);
+    //return NRF24_Receive(payload);
 
 	#endif
 

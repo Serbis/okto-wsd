@@ -21,7 +21,7 @@ int fd = -1;
 const char *logfmt = "[%d][%s][%s] -> %s\n";
 
 /** see func def */
-void Logger_log(char *msg, uint8_t level);
+void Logger_log(const char *msg, uint8_t level);
 
 /** Initialize logger. Open try to open the log file and return result of this operation
  *
@@ -113,7 +113,7 @@ void Logger_fatal(char *source, char *str, ...) {
 }
 
 /** Internal function that`s do all work */
-void Logger_log(char *msg, uint8_t level) {
+void Logger_log(const char *msg, uint8_t level) {
 	if (level >= LEVEL) {
 		#ifdef LOG_FILE
 		if (fd == -1) {

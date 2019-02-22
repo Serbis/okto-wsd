@@ -145,9 +145,9 @@ void RfTransmitter_thread(RfTransmitterArgs * args) {
 				free(bodyh);
 				#endif
 
-				free(elem->data);
 			}
 
+			free(elem->data);
 			free(elem);
 		}
 

@@ -1,0 +1,2 @@
+- Added support for handling event packets 
+- Implemented external transaction traversal

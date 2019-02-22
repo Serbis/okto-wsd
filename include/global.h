@@ -4,6 +4,6 @@
 /** This macros enable inclution of the hardware dependent code. It flag mast be uncomment if buid process run on the real
  * harware device */
 #define TARGET_HW
-//#define DEBUG
+#define DEBUG
 
 #endif

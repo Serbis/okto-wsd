@@ -222,7 +222,7 @@ uint8_t NRF24_ReadReg(uint8_t addr);
 uint8_t NRF24_init_check();
 uint8_t NRF24_Send(uint8_t *pBuf, uint8_t pipe);
 int8_t NRF24_GetPipeByAddress(uint32_t addr);
-int NRF24_Receive(uint8_t *payload);
+int NRF24_Receive(uint8_t *payload, uint32_t *addr);
 bool NRF24_available();
 void NRF24_Read_Buf(uint8_t addr,uint8_t *pBuf,uint8_t bytes);
 void NRF24_Write_Buf(uint8_t addr,uint8_t *pBuf,uint8_t bytes);

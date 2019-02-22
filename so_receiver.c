@@ -22,6 +22,13 @@
  */
 void SoReceiver_thread(SoReceiverThreadArgs *args) {
     bool alive = true;
+
+    Map *globSoMap = args->globSoMap;
+    char *tidk = itoa2(args->socket);
+    int32_t *sockp = (int32_t*) malloc(4);
+    *sockp = args->socket;
+    MAP_add(tidk, sockp, args->globSoMap);
+
     RingBufferDef *inBuf  = RINGS_createRingBuffer(RING_BUFFER_SIZE, RINGS_OVERFLOW_SHIFT, true);
     Logger_info("SoReceiver_thread", "Socket handler thread for sockdf '%d' was started", args->socket);
 
@@ -82,6 +89,10 @@ void SoReceiver_thread(SoReceiverThreadArgs *args) {
             }
         }
 
+    	int32_t *s = MAP_remove(tidk, globSoMap);
+    	free(s);
+
+    	free(tidk);
         RINGS_Free(inBuf);
         free(inBuf);
         close(args->socket);

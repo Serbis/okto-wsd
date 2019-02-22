@@ -8,6 +8,13 @@
 #define EXB_PREAMBLE 0x3BAAAAAAAAAAAAAA
 #define EXB_PREAMBLE_R 0xAAAAAAAAAAAAAA3B
 
+#define EXB_TYPE_CMD 0
+#define EXB_TYPE_RESPONSE 1
+#define EXB_TYPE_ERR 2
+#define EXB_TYPE_EVENT 3
+#define EXB_TYPE_EVENTC 4
+#define EXB_TYPE_EVENT_ACK 5
+
 typedef struct ExbPacket {
 	uint64_t preamble;
 	uint32_t tid;

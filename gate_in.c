@@ -57,11 +57,13 @@ void GateIn_thread(GateInThreadArgs *args) {
 			GateInQueueElement *elem = upQueue->dequeue(upQueue);
 
 			//Store tid-socket relation
-			char *tidk = itoa2(elem->tid);
-			int32_t *sockp = (int32_t*) malloc(4);
-			*sockp = elem->socket;
-			MAP_add(tidk, sockp, args->tidSoMap);
-			free(tidk);
+			if (elem->tid > 0) {
+				char *tidk = itoa2(elem->tid);
+				int32_t *sockp = (int32_t*) malloc(4);
+				*sockp = elem->socket;
+				MAP_add(tidk, sockp, args->tidSoMap);
+				free(tidk);
+			}
 
 			/* Transmits data to the air. In the body of the operation, the first four bytes define the address of
 			 * the front. After them should be a valid ExB package. Transaction ID is selected from the package.

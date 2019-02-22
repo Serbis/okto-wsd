@@ -56,6 +56,9 @@ RingBufferDef* RINGS_createRingBuffer(uint16_t size, uint8_t overflowPolitics, u
  * @param rbd определение кольца
  */
 void RINGS_Free(RingBufferDef* rbd) {
+	#ifdef MUTEX_PTHREAD
+	free(rbd->mutex);
+	#endif
 	free(rbd->buffer);
 }
 

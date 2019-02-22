@@ -247,28 +247,6 @@ uint8_t NRF24_Send(uint8_t *pBuf, uint8_t pipe)
 
 //------------------------------------------------
 
-bool NRF24_available() {
-	 uint8_t fs = NRF24_ReadReg(FIFO_STATUS);
-	 if (!(fs & _BV(0)))
-		 return true;
-
-	 return false;
-}
-
-//------------------------------------------------
-
-int NRF24_Receive(uint8_t *payload)
-{
-	NRF24_Read_Buf(RD_RX_PLOAD, RX_BUF, TX_PLOAD_WIDTH);
-	uint8_t status = NRF24_ReadReg(STATUS);
-	NRF24_WriteReg(STATUS, status | 0x70);
-	memcpy(payload, RX_BUF, TX_PLOAD_WIDTH);
-
-	return TX_PLOAD_WIDTH;
-}
-
-//------------------------------------------------
-
 int8_t NRF24_GetPipeByAddress(uint32_t addr) {
 	if (a_p1_targ == addr)
 		return 1;
@@ -282,6 +260,49 @@ int8_t NRF24_GetPipeByAddress(uint32_t addr) {
 			return 5;
 
 	return -1;
+}
+
+//------------------------------------------------
+
+uint32_t NRF24_GetAddrByPipe(uint8_t pipe) {
+	if (pipe == 1)
+		return a_p1_targ;
+	if (pipe == 2)
+		return a_p2_targ;
+	if (pipe == 3)
+		return a_p3_targ;
+	if (pipe == 4)
+		return a_p4_targ;
+	if (pipe == 5)
+		return a_p5_targ;
+
+	return 0;
+}
+
+//------------------------------------------------
+
+bool NRF24_available() {
+	 uint8_t fs = NRF24_ReadReg(FIFO_STATUS);
+	 if (!(fs & _BV(0)))
+		 return true;
+
+	 return false;
+}
+
+//------------------------------------------------
+
+int NRF24_Receive(uint8_t *payload, uint32_t *addr)
+{
+	uint8_t status = NRF24_ReadReg(STATUS);
+	NRF24_Read_Buf(RD_RX_PLOAD, RX_BUF, TX_PLOAD_WIDTH);
+	NRF24_WriteReg(STATUS, status | 0x70);
+	memcpy(payload, RX_BUF, TX_PLOAD_WIDTH);
+
+	uint8_t pipe = status << 4;
+	pipe = pipe >> 5;
+	*addr = NRF24_GetAddrByPipe(pipe);
+
+	return TX_PLOAD_WIDTH;
 }
 
 //------------------------------------------------

@@ -22,6 +22,8 @@
 #include "libs/collections/include/rings.h"
 #include "libs/collections/include/lbq.h"
 #include "libs/collections/include/map2.h"
+#include "libs/collections/include/list.h"
+#include "libs/collections/include/treeset.h"
 
 // ================================ GLOBAL VARIABLES ====================================
 
@@ -32,6 +34,7 @@ LinkedBlockingQueue *gateOutQueue;
 LinkedBlockingQueue *soTransmitterQueue;
 RingBufferDef *soTransmitterRing;
 RingBufferDef *rfReceiverRing;
+Map *globSoMap;
 
 /** Start domain server. This server listen for incoming bind request. After accept a connection, it create
  *  new client thread with client socket id, and try to accept a new connections */
@@ -65,6 +68,7 @@ void startServer() {
         pthread_t thread;
         SoReceiverThreadArgs *args = malloc(sizeof(SoReceiverThreadArgs));  //Free in cmd_processor
         args->socket = client_sockfd;
+        args->globSoMap = globSoMap;
         args->downQueue = gateInQueue;
         pthread_create(&thread, NULL, (void *) SoReceiver_thread, args);
     }
@@ -75,6 +79,7 @@ void startDaemon() {
 	rfTransmitterQueue  = new_LQB(128);
 	soTransmitterQueue  = new_LQB(128);
 	gateOutQueue = new_LQB(128);
+	globSoMap = MAP_new();
 	soTransmitterRing  = RINGS_createRingBuffer(128, RINGS_OVERFLOW_SHIFT, true);
 	rfReceiverRing  = RINGS_createRingBuffer(1024, RINGS_OVERFLOW_SHIFT, true);
 	Map *tidSoMap = MAP_new();
@@ -111,6 +116,7 @@ void startDaemon() {
 	SoTransmitterArgs *soTransmitterArgs = malloc(sizeof(SoTransmitterArgs));
 	soTransmitterArgs->upQueue = soTransmitterQueue;
 	soTransmitterArgs->tidSoMap = tidSoMap;
+	soTransmitterArgs->globSoMap = globSoMap;
 	pthread_create(&soTransmitterThread, NULL, (void *) SoTransmitter_thread, soTransmitterArgs);
 
 	pthread_t rfReceiverThread;
@@ -302,7 +308,20 @@ int devRun(int argc, char* argv[]) {
 }
 
 int main(int argc, char* argv[]) {
-	//return devRun(argc, argv);
-	return daemonRun(argc, argv);
+	//volatile uint8_t x = 0x4A;
+	//x = x << 4;
+	//x = x >> 5;
+
+	return devRun(argc, argv);
+	//return daemonRun(argc, argv);
+
+	/*volatile TreeSet *set = TreeSet_new(true);
+	TreeSet_put(set, "2", 2);
+	TreeSet_put(set, "1", 2);
+	TreeSet_put(set, "3", 2);*/
+	//TreeSet_put(set, "d", 2);
+	//TreeSet_put(set, "e", 2);
+
+	return 0;
 
 }

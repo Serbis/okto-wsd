@@ -6,8 +6,13 @@
 #include "../libs/collections/include/lbq.h"
 #include "../libs/collections/include/map2.h"
 
+typedef struct {
+	uint32_t addr;
+	uint8_t *data;
+} GateOutQueueElement;
+
 /** Thread args */
-typedef struct GateOutThreadArgs {
+typedef struct {
 	LinkedBlockingQueue *upQueue;
     LinkedBlockingQueue *soTransmitterQueue;
     Map *tidSoMap;
