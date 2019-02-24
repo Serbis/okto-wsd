@@ -307,10 +307,12 @@ int NRF24_Receive(uint8_t *payload, uint32_t *addr)
 
 //------------------------------------------------
 
-void NRF24_init()
+void NRF24_init(bool reinit)
 {
-	rf_mutex = malloc(sizeof(pthread_mutex_t));
-	pthread_mutex_init(rf_mutex, NULL);
+	if (!reinit) {
+		rf_mutex = malloc(sizeof(pthread_mutex_t));
+		pthread_mutex_init(rf_mutex, NULL);
+	}
 
 	CE_RESET;
     delayMs(5000);
@@ -340,10 +342,6 @@ void NRF24_init()
 	NRF24_Write_Buf(RX_ADDR_P5, (uint8_t*) &a_p5_targ, TX_ADR_WIDTH);*/
 
 	NRF24_RX_Mode();
-
-	uint8_t value = NRF24_ReadReg(CONFIG);
-	printf("CONFIG=0x%02X\n", value);
-	fflush(stdout);
 }
 
 uint8_t NRF24_init_check()

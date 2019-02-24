@@ -71,7 +71,7 @@ int RF_init() {
 	NRF_spid = spidev;
 	NRF_cePin = 21;
 
-	NRF24_init();
+	NRF24_init(false);
 	int checkr = 0;// NRF24_init_check();
 
 	if (checkr != 0) {

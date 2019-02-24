@@ -216,7 +216,7 @@ uint32_t a_p4_self;
 uint32_t a_p5_targ;
 uint32_t a_p5_self;
 
-void NRF24_init();
+void NRF24_init(bool reinit);
 //void NRF24_WriteReg(uint8_t addr, uint8_t dt);
 uint8_t NRF24_ReadReg(uint8_t addr);
 uint8_t NRF24_init_check();

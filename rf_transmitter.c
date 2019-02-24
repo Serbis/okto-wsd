@@ -1,5 +1,6 @@
 #include <unistd.h>
 #include <stdint.h>
+#include <time.h>
 #include "include/rf_transmitter.h"
 #include "libs/collections/include/lbq.h"
 #include "include/utils.h"
@@ -7,6 +8,7 @@
 #include "include/global.h"
 #include "include/so_transmitter.h"
 #include "include/wsd_packet.h"
+#include "include/exb_packet.h"
 #include "include/NRF24.h"
 #include "math.h"
 
@@ -50,6 +52,8 @@ void RfTransmitter_thread(RfTransmitterArgs * args) {
 	rfTransmitQueues[2] = p3_transmitQueue;
 	rfTransmitQueues[3] = p4_transmitQueue;
 	rfTransmitQueues[4] = p5_transmitQueue;
+
+	time_t lastTick = time(NULL) * 1000;
 
 	while(1) {
 		for (int i = 0; i < 5; i++) {
@@ -150,6 +154,46 @@ void RfTransmitter_thread(RfTransmitterArgs * args) {
 			free(elem->data);
 			free(elem);
 		}
+
+		//Send tick peckets each 5 second to all pipes
+		/*if (time(NULL) * 1000 - lastTick > 5000) {
+			ExbPacket *packet = (ExbPacket*) malloc(sizeof(ExbPacket));
+			packet->preamble = EXB_PREAMBLE;
+			packet->tid = 1;
+			packet->type = EXB_TYPE_TICK;
+			packet->length = 0;
+			packet->body = NULL;
+			uint16_t sbin = 0;
+			uint8_t *bin = ExbPacket_toBinary(packet, &sbin);
+
+			for (int i = 0; i < 5; i++) {
+				#ifdef DEBUG
+				Logger_debug("RfTransmitter_thread", "Transmit rf tick packet [ pipe=%d] ", i + 1);
+				#endif
+
+
+				#ifdef TARGET_HW
+
+				uint8_t retr = NRF24_Send(bin, i + 1) & 0xF;
+				if (retr >= 15) {
+					#ifdef DEBUG
+					Logger_debug("RfTransmitter_thread", "Rf tick packet not transmitted [ pipe=%d] ", i + 1);
+					#endif
+				} else {
+					#ifdef DEBUG
+					Logger_debug("RfTransmitter_thread", "Rf tick packet transmitted [ pipe=%d, retr=%d] ", i + 1, retr);
+					#endif
+				}
+
+				#endif
+			}
+
+			lastTick = time(NULL) * 1000;
+
+			free(packet);
+			free(bin);
+		}*/
+
 
 		usleep(100000);
 	}

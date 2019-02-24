@@ -312,8 +312,8 @@ int main(int argc, char* argv[]) {
 	//x = x << 4;
 	//x = x >> 5;
 
-	return devRun(argc, argv);
-	//return daemonRun(argc, argv);
+	//return devRun(argc, argv);
+	return daemonRun(argc, argv);
 
 	/*volatile TreeSet *set = TreeSet_new(true);
 	TreeSet_put(set, "2", 2);

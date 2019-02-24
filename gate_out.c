@@ -60,34 +60,38 @@ void GateOut_thread(GateOutThreadArgs *args) {
 				 } else {
 				 	if (dlen >= sbody + EXB_HEADER_SIZE + EXB_PREAMBLE_SIZE) {
 				 		int stotal = sbody + EXB_HEADER_SIZE + EXB_PREAMBLE_SIZE + 4;
-				    	uint8_t *blob = (uint8_t*) malloc(stotal);
-				        RINGS_readAll(blob + 4, inBuf);
 
-				        blob[0] = (elem->addr & 0xff000000) >> 24;
-				        blob[1] = (elem->addr & 0x00ff0000) >> 16;
-				        blob[2] = (elem->addr & 0x0000ff00) >> 8;
-				        blob[3] = (elem->addr & 0x000000ff);
+						if (packet->type != EXB_TYPE_TICK) {
+							uint8_t *blob = (uint8_t*) malloc(stotal);
+							RINGS_readAll(blob + 4, inBuf);
+
+							blob[0] = (elem->addr & 0xff000000) >> 24;
+							blob[1] = (elem->addr & 0x00ff0000) >> 16;
+							blob[2] = (elem->addr & 0x0000ff00) >> 8;
+							blob[3] = (elem->addr & 0x000000ff);
 
 
-						#ifdef DEBUG
-				        char *bhex = sprintfhex(blob, stotal);
-				        Logger_debug("GateOut_thread", "Received exb packet from rf [ tid=%d, data=%s]", packet->tid, bhex);
-				        free(bhex);
-						#endif
+							#ifdef DEBUG
+							char *bhex = sprintfhex(blob, stotal);
+							Logger_debug("GateOut_thread", "Received exb packet from rf [ tid=%d, data=%s]", packet->tid, bhex);
+							free(bhex);
+							#endif
 
-				        SoTransmitterQueueElem *sot = (SoTransmitterQueueElem*) malloc(sizeof(SoTransmitterQueueElem));
-				        sot->tid = packet->tid;
-				        sot->type = WSD_TYPE_RECEIVE;
-				        sot->size = stotal;
-				        sot->data = (uint8_t*) blob;
-				        if (packet->type == EXB_TYPE_EVENT || packet->type == EXB_TYPE_EVENTC) // If this is an event
-				        	sot->uniall = true; // It must be resend to all existed socket at out
+							SoTransmitterQueueElem *sot = (SoTransmitterQueueElem*) malloc(sizeof(SoTransmitterQueueElem));
+							sot->tid = packet->tid;
+							sot->type = WSD_TYPE_RECEIVE;
+							sot->size = stotal;
+							sot->data = (uint8_t*) blob;
+							if (packet->type == EXB_TYPE_EVENT || packet->type == EXB_TYPE_EVENTC) // If this is an event
+								sot->uniall = true; // It must be resend to all existed socket at out
 
-				        soTransmitterQueue->enqueue(soTransmitterQueue, sot);
+							soTransmitterQueue->enqueue(soTransmitterQueue, sot);
 
+				 		}
 				        //free(blob);
 				        RINGS_dataClear(inBuf);
 				        free(packet);
+
 
 				        mode = MODE_PREAMBLE;
 				    }
